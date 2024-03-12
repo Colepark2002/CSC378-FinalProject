@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 300
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -31,7 +31,7 @@ func _physics_process(_delta):
 	if y_direction:
 		velocity.y = y_direction * SPEED
 	else:
-		velocity.y = move_toward(velocity.y, 0, 15) 
+		velocity.y = move_toward(velocity.y, 0, 25) 
 	
 	if Input.is_action_just_pressed("left"):
 		sprite_2d.flip_h = true	

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdoveb5p8un70"]
+[gd_scene load_steps=4 format=3 uid="uid://bdoveb5p8un70"]
 
 [ext_resource type="Script" path="res://Scenes/entities/entity.gd" id="1_ay5e7"]
 [ext_resource type="Script" path="res://Scenes/entities/FSM.gd" id="2_h2xu1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n4e3m"]
 
 [node name="entity" type="CharacterBody2D"]
 script = ExtResource("1_ay5e7")
@@ -9,6 +11,7 @@ script = ExtResource("1_ay5e7")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n4e3m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

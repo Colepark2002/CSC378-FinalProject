@@ -1,6 +1,6 @@
-extends CharacterBody2D
+extends Entity
 
-class_name Entity
+class_name Drone
 
 
 @onready var animated_sprite = $AnimatedSprite2D
