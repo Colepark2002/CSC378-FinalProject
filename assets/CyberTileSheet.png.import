@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqy5vy8q3yj7k"
-path="res://.godot/imported/girlSprite.png-dde5046ab45c7ac3ab8653d0dfaeee7b.ctex"
+uid="uid://e78c8kl80x1s"
+path="res://.godot/imported/CyberTileSheet.png-2d9275128ccf9fc1e27c80aba658fe14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/girlSprite.png"
-dest_files=["res://.godot/imported/girlSprite.png-dde5046ab45c7ac3ab8653d0dfaeee7b.ctex"]
+source_file="res://assets/CyberTileSheet.png"
+dest_files=["res://.godot/imported/CyberTileSheet.png-2d9275128ccf9fc1e27c80aba658fe14.ctex"]
 
 [params]
 
