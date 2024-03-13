@@ -4,21 +4,32 @@ extends CharacterBody2D
 const SPEED = 300
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
-var health
+
+var is_dead
+
+var max_health: float = 100
+var health: float
 var damage
 var crit
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
 func _ready():
+	is_dead = false
 	health = 100
 	damage = 30
 	crit = .01
 	add_to_group("player")
 	
 func _physics_process(_delta):
+	if is_dead == true && !animation_player.is_playing():
+		queue_free()
 	# Handle shoot.
 	if Input.is_action_just_pressed("shoot"):
+		if get_global_mouse_position().x > global_position.x:
+			sprite_2d.flip_h = false
+		elif get_global_mouse_position().x < global_position.x:
+			sprite_2d.flip_h = true
 		_handle_shoot()
 		
 	# Handle Running and Idle Animation
@@ -56,12 +67,37 @@ func _get_collisions():
 		return null
 
 func take_damage(dmg : int):
-	print("Took Damage: %d" % [dmg])
+	print("Player Took Damage: %d" % [dmg])
 	health -= dmg
-	if health < 0:
+	var healthBar = $HealthBar
+	if healthBar:
+		var percent_health = health / max_health
+		print(percent_health)
+		if  percent_health > 0.9:
+			healthBar.change_health_state(9) 
+		elif percent_health > 0.8:
+			healthBar.change_health_state(8) 
+		elif percent_health > 0.7:
+			healthBar.change_health_state(7) 
+		elif percent_health > 0.6:
+			healthBar.change_health_state(6) 
+		elif percent_health > 0.5:
+			healthBar.change_health_state(5) 
+		elif percent_health > 0.4:
+			healthBar.change_health_state(4) 
+		elif percent_health > 0.3:
+			healthBar.change_health_state(3) 
+		elif percent_health > 0.2:
+			healthBar.change_health_state(2) 
+		elif percent_health > 0:
+			healthBar.change_health_state(1) 
+	if health <= 0:
+		healthBar.change_health_state(0)
+		is_dead = true
 		_dead()
 		
 func _dead():
+	animation_player.play("death")
 	pass
 	
 func _handle_shoot():

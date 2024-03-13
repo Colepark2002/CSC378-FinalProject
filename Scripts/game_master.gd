@@ -23,16 +23,18 @@ func spawn_current_player():
 	
 	player_node.add_child(camera)
 	
+	var hud = load("res://Scenes/HUD/HealthBar.tscn")
+	var hud_node = hud.instantiate()
+	player_node.add_child(hud_node)
+	
 	is_player_spawned = true
 	return player_node
 	
-func spawn_enemy():
+func spawn_enemy(x: int, y: int):
 	var enemy = load("res://Scenes/entities/Enemies/enemy.tscn")
 	var enemy_node =  enemy.instantiate()
-	var pos_x = 200
-	var pos_y = 200
 	
-	enemy_node.position = Vector2(pos_x, pos_y)
+	enemy_node.position = Vector2(x, y)
 	return enemy_node
 
 func _physics_process(_delta):

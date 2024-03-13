@@ -25,7 +25,7 @@ func _physics_process(_delta):
 		if (c && (c.get_groups().size() && c.get_groups().has("player"))):
 			is_dead = true
 			_death()
-			c.take_damage(20)
+			c.take_damage(damage)
 			
 			
 		move_and_slide()
@@ -50,9 +50,10 @@ func _death():
 	pass
 	
 func take_damage(dmg : int):
-	print("Took Damage: %d" % [dmg])
+	print("Enemy Took Damage: %d" % [dmg])
 	health -= dmg
 	if health < 0:
+		is_dead = true
 		_death()
 
 func _on_timer_timeout():
