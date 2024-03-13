@@ -50,7 +50,6 @@ func _death():
 	pass
 	
 func take_damage(dmg : int):
-	print("Enemy Took Damage: %d" % [dmg])
 	health -= dmg
 	if health < 0:
 		is_dead = true

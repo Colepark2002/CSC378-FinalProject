@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://cudgis70amu4d"]
+
+[ext_resource type="Script" path="res://Scenes/HUD/story_screen.gd" id="1_ejilo"]
+
+[node name="Story_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ejilo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.980392, 0.976471, 0.964706, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 67.0
+offset_right = 1648.0
+offset_bottom = 960.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "In the year 2150, humanity has made remarkable strides in medical technology. The NeuroTech Corporation stands at the forefront, pioneering groundbreaking advancements in neural augmentation, cybernetics, and biotechnology. Their flagship facility, the NeuroGenesis Lab, is a sprawling labyrinth of sterile corridors, humming machinery, and secrets waiting to be unraveled. 
+
+You play as Dr. Fraser, a brilliant neuroscientist who once worked for NeuroTech. However, after a series of disturbing discoveries, you turned rogue, determined to expose the corporation’s dark agenda. As you infiltrate the Lab, you uncover shocking truths. NeuroTech’s prized invention, the Neural Nexus, promises to enhance human cognition, cure diseases, and even grant psychic abilities. But rumors persist that this is all a facade to cover their true intentions of mass mind control. 
+
+Press Space to Continue"
+horizontal_alignment = 1
+autowrap_mode = 2

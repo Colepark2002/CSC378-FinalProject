@@ -67,7 +67,6 @@ func _get_collisions():
 		return null
 
 func take_damage(dmg : int):
-	print("Player Took Damage: %d" % [dmg])
 	health -= dmg
 	var healthBar = $HealthBar
 	if healthBar:
