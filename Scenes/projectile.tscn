@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpuxdaf13yieo"]
+
+[ext_resource type="Texture2D" uid="uid://dwy6jhomdfpmo" path="res://assets/LaserBullet.png" id="1_8k1vp"]
+[ext_resource type="Script" path="res://Scenes/projectile.gd" id="1_f7kle"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h4acv"]
+radius = 6.0
+height = 20.0
+
+[node name="Projectile" type="CharacterBody2D"]
+script = ExtResource("1_f7kle")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -2.42426
+texture = ExtResource("1_8k1vp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_h4acv")

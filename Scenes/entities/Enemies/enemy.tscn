@@ -1,10 +1,42 @@
-[gd_scene load_steps=9 format=3 uid="uid://qiokinqb7vcv"]
+[gd_scene load_steps=17 format=3 uid="uid://qiokinqb7vcv"]
 
 [ext_resource type="Script" path="res://Scenes/entities/Enemies/Enemy.gd" id="1_bvcx4"]
 [ext_resource type="Texture2D" uid="uid://dxdu3jiic0rwc" path="res://assets/Enemies/enemies x1.png" id="2_v3w3a"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vq3na"]
-size = Vector2(14, 18)
+[sub_resource type="CircleShape2D" id="CircleShape2D_sf3xy"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jida0"]
+atlas = ExtResource("2_v3w3a")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwskn"]
+atlas = ExtResource("2_v3w3a")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0gs8"]
+atlas = ExtResource("2_v3w3a")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moyqu"]
+atlas = ExtResource("2_v3w3a")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sybxe"]
+atlas = ExtResource("2_v3w3a")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5h3v"]
+atlas = ExtResource("2_v3w3a")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utx4w"]
+atlas = ExtResource("2_v3w3a")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlgi8"]
+atlas = ExtResource("2_v3w3a")
+region = Rect2(224, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bkya6"]
 atlas = ExtResource("2_v3w3a")
@@ -24,6 +56,35 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y6pow"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jida0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwskn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0gs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moyqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sybxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5h3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utx4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlgi8")
+}],
+"loop": false,
+"name": &"death",
+"speed": 24.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bkya6")
@@ -49,6 +110,8 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_bvcx4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 20.0
+navigation_layers = 3
 debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
@@ -57,11 +120,10 @@ autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -4)
-shape = SubResource("RectangleShape2D_vq3na")
+shape = SubResource("CircleShape2D_sf3xy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y6pow")
-frame = 3
-frame_progress = 0.834251
+animation = &"death"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
