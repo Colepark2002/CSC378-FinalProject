@@ -45,13 +45,13 @@ func _physics_process(_delta):
 	if direction:
 		velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, 15)
+		velocity.x = move_toward(velocity.x, 0, 40)
 		
 	var y_direction = Input.get_axis("up", "down")
 	if y_direction:
 		velocity.y = y_direction * SPEED
 	else:
-		velocity.y = move_toward(velocity.y, 0, 25) 
+		velocity.y = move_toward(velocity.y, 0, 40) 
 	
 	if Input.is_action_just_pressed("left"):
 		sprite_2d.flip_h = true	

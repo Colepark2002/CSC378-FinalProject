@@ -9,6 +9,7 @@ const SPEED = 100
 var damage
 var is_dead = false
 var health
+var allow_spawn = false
 
 var player_node = GameMaster.get_current_player()
 
@@ -16,13 +17,14 @@ func _ready():
 	health = 500
 	damage = 50
 	add_to_group("enemy")
+	add_to_group("boss")
 	animator.play("default")
 
 func _physics_process(_delta):
 	if (!is_dead):
 			
 		if (!(navigation.distance_to_target() > 600)):
-			animator.play("run")
+			animator.play("default")
 			var dir = to_local(navigation.get_next_path_position()).normalized()
 			velocity = dir * SPEED
 			
@@ -60,8 +62,18 @@ func _get_collisions():
 	
 
 func _death():
-	animator.play("death")
-	pass
+	var root = get_node("/root")
+	for n in root.get_children():
+			root.remove_child(n)
+			if !(n.get_groups().has("boss") || !(n.get_groups().has("player"))):
+				n.queue_free()
+	root.get_tree().change_scene_to_file("res://Scenes/Credits.tscn")
+	queue_free()
+	#animator.play("death")
+	
+	
+func allow_spawning():
+	allow_spawn = true
 	
 func take_damage(dmg : int):
 	health -= dmg
@@ -72,17 +84,6 @@ func take_damage(dmg : int):
 
 func _on_timer_timeout():
 	makepath()
-	
-func _handle_shoot():
-		animator.stop()
-		animator.play("shoot")
-		gun_sound.play()
-		var p = load("res://Scenes/enemy_projectile.tscn")
-		var proj = p.instantiate()
-		proj.set_bullet_velocity(global_position.direction_to(player_node.global_position))
-		proj.position = global_position
-		proj.add_collision_exception_with(self)
-		get_node("/root").add_child(proj)
 			
 func _spawnDrones():
 	var d = load("res://Scenes/entities/Enemies/enemy.tscn")
@@ -92,5 +93,6 @@ func _spawnDrones():
 	get_node("/root").add_child(drone1)
 
 func _on_drone_timer_timeout():
-	_spawnDrones()
+	if allow_spawn:
+		_spawnDrones()
 	

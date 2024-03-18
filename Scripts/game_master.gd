@@ -14,8 +14,8 @@ func spawn_current_player():
 	
 	var player = load("res://Scenes/main_character.tscn")
 	player_node = player.instantiate()
-	var pos_x = 40
-	var pos_y = 50
+	var pos_x = 0
+	var pos_y = 0
 	player_node.position = Vector2(pos_x, pos_y)
 	
 	var camera = Camera2D.new()
