@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://5p3qtsdmolgo"]
+[gd_scene load_steps=35 format=3 uid="uid://5p3qtsdmolgo"]
 
 [ext_resource type="Script" path="res://Scenes/main_character.gd" id="1_iie7m"]
 [ext_resource type="Texture2D" uid="uid://rcghu3g34xn3" path="res://assets/Players/players blue x1.png" id="2_hmh1l"]
+[ext_resource type="AudioStream" uid="uid://cd084te74cde5" path="res://assets/Sound/lasergun.mp3" id="3_qmnoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uvig7"]
 atlas = ExtResource("2_hmh1l")
@@ -363,3 +364,7 @@ shape = SubResource("RectangleShape2D_xvg5t")
 libraries = {
 "": SubResource("AnimationLibrary_wp7wa")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qmnoq")
+volume_db = -10.0

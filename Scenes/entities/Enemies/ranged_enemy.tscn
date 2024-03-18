@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://cqp1a3ynanu3a"]
+[gd_scene load_steps=23 format=3 uid="uid://cqp1a3ynanu3a"]
 
 [ext_resource type="Script" path="res://Scenes/entities/Enemies/ranged_enemy.gd" id="1_ukdy6"]
 [ext_resource type="Texture2D" uid="uid://xij03doed0lu" path="res://assets/Players/players red x2.png" id="2_y0ly2"]
+[ext_resource type="AudioStream" uid="uid://cd084te74cde5" path="res://assets/Sound/lasergun.mp3" id="3_lwxgo"]
+[ext_resource type="AudioStream" uid="uid://dnmflrvuln080" path="res://assets/Sound/hit.mp3" id="4_leg48"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkih5"]
 atlas = ExtResource("2_y0ly2")
@@ -93,7 +95,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -158,10 +160,18 @@ autostart = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_4ybon")
-animation = &"run"
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 6)
 shape = SubResource("CircleShape2D_sf3xy")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lwxgo")
+volume_db = -15.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_leg48")
+volume_db = -20.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

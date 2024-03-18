@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 300
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var gun_sound = $AudioStreamPlayer2D
 
 var is_dead
 
@@ -102,6 +103,7 @@ func _handle_shoot():
 	if (!animation_player.current_animation == "shoot" || animation_player.is_playing()):
 			animation_player.stop()
 			animation_player.play("shoot")
+			gun_sound.play()
 			var p = load("res://Scenes/projectile.tscn")
 			var proj = p.instantiate()
 			proj.position = global_position

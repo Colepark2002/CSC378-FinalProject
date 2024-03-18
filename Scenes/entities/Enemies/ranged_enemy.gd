@@ -4,6 +4,8 @@ const SPEED = 100
 
 @onready var navigation = $NavigationAgent2D
 @onready var animator = $AnimatedSprite2D
+@onready var gun_sound = $AudioStreamPlayer2D
+@onready var hit_noise = $AudioStreamPlayer2D2
 var damage
 var is_dead = false
 var health
@@ -37,13 +39,7 @@ func _physics_process(_delta):
 		elif (velocity.x < 0):
 			animator.flip_h = true
 		
-		var c = _get_collisions()
-		if (c && (c.get_groups().size() && c.get_groups().has("player"))):
-			is_dead = true
-			_death()
-			c.take_damage(damage)
-			
-			
+				
 		move_and_slide()
 	else:
 		if (!animator.is_playing()):
@@ -67,6 +63,7 @@ func _death():
 	
 func take_damage(dmg : int):
 	health -= dmg
+	hit_noise.play()
 	if health < 0:
 		is_dead = true
 		_death()
@@ -77,6 +74,7 @@ func _on_timer_timeout():
 func _handle_shoot():
 		animator.stop()
 		animator.play("shoot")
+		gun_sound.play()
 		var p = load("res://Scenes/enemy_projectile.tscn")
 		var proj = p.instantiate()
 		proj.set_bullet_velocity(global_position.direction_to(player_node.global_position))

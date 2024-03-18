@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxl2flq23v1ms"]
+[gd_scene load_steps=4 format=3 uid="uid://bxl2flq23v1ms"]
 
 [ext_resource type="Script" path="res://assets/main.gd" id="1_efjhl"]
 [ext_resource type="TileSet" uid="uid://blsq1uqgstkme" path="res://assets/Custom Assets/main.tres" id="2_dohh8"]
+[ext_resource type="AudioStream" uid="uid://l6ug7ukwd57d" path="res://assets/Sound/BackgroundMusic.mp3" id="3_lulno"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_efjhl")
@@ -35,3 +36,7 @@ position = Vector2(1115, 62)
 
 [node name="spawn6" type="Marker2D" parent="Spawns" groups=["spawn"]]
 position = Vector2(628, 72)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lulno")
+volume_db = -15.0

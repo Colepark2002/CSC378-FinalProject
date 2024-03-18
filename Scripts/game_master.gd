@@ -10,7 +10,7 @@ func get_current_player():
 	else: return null
 	
 func spawn_current_player():
-	if (is_player_spawned): return
+	if (is_player_spawned): return player_node
 	
 	var player = load("res://Scenes/main_character.tscn")
 	player_node = player.instantiate()
@@ -45,10 +45,17 @@ func spawn_ranged_enemy(pos : Vector2):
 	enemy_node.position = pos
 	return enemy_node
 	
+func spawn_boss(pos : Vector2):
+	var enemy = load("res://Scenes/entities/Enemies/boss.tscn")
+	var enemy_node =  enemy.instantiate()
+	
+	enemy_node.position = pos
+	return enemy_node
+	
 func spawn_enemies(spawns):
 	var enemies = []
 	for i in range(spawns.size()):
-		var enemy_type = rng.randi_range(0, 2)
+		var enemy_type = rng.randi_range(0, 1)
 		if (enemy_type == 1):
 			enemies.append(spawn_enemy(spawns[i].global_position))
 		else:

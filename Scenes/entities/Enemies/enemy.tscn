@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://qiokinqb7vcv"]
+[gd_scene load_steps=18 format=3 uid="uid://qiokinqb7vcv"]
 
 [ext_resource type="Script" path="res://Scenes/entities/Enemies/Enemy.gd" id="1_bvcx4"]
 [ext_resource type="Texture2D" uid="uid://dxdu3jiic0rwc" path="res://assets/Enemies/enemies x1.png" id="2_v3w3a"]
+[ext_resource type="AudioStream" uid="uid://dwc275s7ld7ti" path="res://assets/Sound/explosion.mp3" id="3_a0x6b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sf3xy"]
 radius = 11.0454
@@ -123,5 +124,8 @@ shape = SubResource("CircleShape2D_sf3xy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y6pow")
 animation = &"death"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_a0x6b")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

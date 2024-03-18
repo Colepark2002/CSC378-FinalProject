@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-const SPEED = 100
+const SPEED = 350
 
 @onready var navigation = $NavigationAgent2D
 @onready var animator = $AnimatedSprite2D
+@onready var explosion = $AudioStreamPlayer2D
 var damage
 var is_dead = false
 var health
@@ -48,10 +49,14 @@ func _get_collisions():
 
 func _death():
 	animator.play("death")
+	explosion.play()
 	pass
 	
 func take_damage(dmg : int):
 	health -= dmg
+	velocity.x *= -5
+	velocity.y *= -5
+	move_and_slide()
 	if health < 0:
 		is_dead = true
 		_death()
