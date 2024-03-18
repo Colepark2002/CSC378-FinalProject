@@ -3,6 +3,7 @@ extends Node
 var player_node = null
 var is_player_spawned = false
 var count = 0
+var rng = RandomNumberGenerator.new()
 
 func get_current_player():
 	if (player_node): return player_node
@@ -14,7 +15,7 @@ func spawn_current_player():
 	var player = load("res://Scenes/main_character.tscn")
 	player_node = player.instantiate()
 	var pos_x = 40
-	var pos_y = 40
+	var pos_y = 50
 	player_node.position = Vector2(pos_x, pos_y)
 	
 	var camera = Camera2D.new()
@@ -30,12 +31,29 @@ func spawn_current_player():
 	is_player_spawned = true
 	return player_node
 	
-func spawn_enemy(x: int, y: int):
+func spawn_enemy(pos : Vector2):
 	var enemy = load("res://Scenes/entities/Enemies/enemy.tscn")
 	var enemy_node =  enemy.instantiate()
 	
-	enemy_node.position = Vector2(x, y)
+	enemy_node.position = pos
 	return enemy_node
+	
+func spawn_ranged_enemy(pos : Vector2):
+	var enemy = load("res://Scenes/entities/Enemies/ranged_enemy.tscn")
+	var enemy_node =  enemy.instantiate()
+	
+	enemy_node.position = pos
+	return enemy_node
+	
+func spawn_enemies(spawns):
+	var enemies = []
+	for i in range(spawns.size()):
+		var enemy_type = rng.randi_range(0, 2)
+		if (enemy_type == 1):
+			enemies.append(spawn_enemy(spawns[i].global_position))
+		else:
+			enemies.append(spawn_ranged_enemy(spawns[i].global_position))
+	return enemies
 
 func _physics_process(_delta):
 	count += 1

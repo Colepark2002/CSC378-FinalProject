@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 
 var player = GameMaster.get_current_player()
-var speed = 500
+var speed = 1000
 
 
 func _ready():

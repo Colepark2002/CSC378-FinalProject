@@ -23,7 +23,7 @@ func _ready():
 	
 func _physics_process(_delta):
 	if is_dead == true && !animation_player.is_playing():
-		queue_free()
+		get_tree().quit()
 	# Handle shoot.
 	if Input.is_action_just_pressed("shoot"):
 		if get_global_mouse_position().x > global_position.x:
@@ -71,7 +71,6 @@ func take_damage(dmg : int):
 	var healthBar = $HealthBar
 	if healthBar:
 		var percent_health = health / max_health
-		print(percent_health)
 		if  percent_health > 0.9:
 			healthBar.change_health_state(9) 
 		elif percent_health > 0.8:

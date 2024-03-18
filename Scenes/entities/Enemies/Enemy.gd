@@ -18,8 +18,9 @@ func _ready():
 
 func _physics_process(_delta):
 	if (!is_dead):
-		var dir = to_local(navigation.get_next_path_position()).normalized()
-		velocity = dir * SPEED
+		if (!(navigation.distance_to_target() > 400)):
+			var dir = to_local(navigation.get_next_path_position()).normalized()
+			velocity = dir * SPEED
 		
 		var c = _get_collisions()
 		if (c && (c.get_groups().size() && c.get_groups().has("player"))):

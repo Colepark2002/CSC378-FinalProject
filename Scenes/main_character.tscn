@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://Scenes/main_character.gd" id="1_iie7m"]
 [ext_resource type="Texture2D" uid="uid://rcghu3g34xn3" path="res://assets/Players/players blue x1.png" id="2_hmh1l"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvg5t"]
-size = Vector2(38, 52)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_uvig7"]
 atlas = ExtResource("2_hmh1l")
 region = Rect2(0, 160, 32, 32)
@@ -200,6 +197,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvg5t"]
+size = Vector2(38, 52)
+
 [sub_resource type="Animation" id="Animation_bgxxl"]
 length = 0.001
 tracks/0/type = "value"
@@ -351,13 +351,13 @@ _data = {
 position = Vector2(71, 43)
 script = ExtResource("1_iie7m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 28)
-shape = SubResource("RectangleShape2D_xvg5t")
-
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3.30232, 3.30232)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_mt7qr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_xvg5t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
